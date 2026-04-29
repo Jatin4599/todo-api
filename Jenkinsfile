@@ -49,8 +49,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying with Docker Compose...'
-                sh 'docker compose down || true'
-                sh 'docker compose up -d'
+                sh 'docker stop todo-api todo-db || true'
+                sh 'docker rm todo-api todo-db || true'
+                sh "cp ${WORKSPACE}/docker-compose.yml /home/jatin/todo-api/docker-compose.yml || true"
+                sh 'cd /home/jatin/todo-api && docker compose down || true'
+                sh 'cd /home/jatin/todo-api && docker compose up -d'
             }
         }
     }
