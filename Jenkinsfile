@@ -17,14 +17,24 @@ pipeline {
         stage('Install') {
             steps {
                 echo 'Installing dependencies...'
-                sh 'npm ci'
+                sh '''
+                    export NVM_DIR="$HOME/.nvm"
+                    . "$NVM_DIR/nvm.sh"
+                    nvm use 20
+                    npm ci
+                '''
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'npm test'
+                sh '''
+                    export NVM_DIR="$HOME/.nvm"
+                    . "$NVM_DIR/nvm.sh"
+                    nvm use 20
+                    npm test
+                '''
             }
         }
 
