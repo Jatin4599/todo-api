@@ -3,3 +3,7 @@ node_modules/
 *.log
 dist/
 coverage/
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
